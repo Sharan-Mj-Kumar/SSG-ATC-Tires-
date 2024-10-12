@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Slip</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 50px;
+            border: 1px solid #000;
+            max-width: 1000px;
+            margin: auto;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        h3 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            width: 48%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .info-box div {
+            margin-bottom: 10px;
+        }
+        .info-box span {
+            font-weight: bold;
+        }
+        /* Styling for Total Deduction and Net Salary */
+        .highlight-box {
+            text-align: left;
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 4px;
+            background-color: #e9ecef;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .highlight-box div {
+            margin-bottom: 8px;
+            height : 125px;
+        }
+
+        .custom-button {
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            margin-top: 20px;
+        }
+        .custom-button:hover {
+            background-color: #0056b3;
+        }
+        .print-button {
+            background-color: #28a745;
+        }
+        .print-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Replacing header with new content -->
+<h2>WAGE SLIP FOR XXVII</h2>
+<h3>UNDER RULE 78(I)(B) THE TAMILNADU CONTRACTOR RULES 1975</h3>
+<h3>ABRAHAM & SON ASSOCIATES</h3>
+<h3>SITE: ATC Tires Private Limited. Tirunelveli</h3>
+<h3>Wage slip for the month of: SEPTEMBER 2024</h3>
+
+<div class="container">
+    <!-- Left Info Box -->
+    <div class="info-box" style="text-align: left;">
+        <div>
+            <span>Employee ID:</span> <span th:text="${employee.empNo != '' ? employee.empNo : '0'}"></span>
+        </div>
+        <div>
+            <span>Name:</span> <span th:text="${employee.name != '' ? employee.name : '0'}"></span>
+        </div>
+        <div>
+            <span>Section:</span> <span th:text="${employee.section != '' ? employee.section : '0'}"></span>
+        </div>
+        <div>
+            <span>Bank Name:</span> <span th:text="${employee.bankName != '' ? employee.bankName : '0'}"></span>
+        </div>
+        <div>
+            <span>Account No:</span> <span th:text="${employee.accountNo != '' ? employee.accountNo : '0'}"></span>
+        </div>
+        <div>
+            <span>IFSC Code:</span> <span th:text="${employee.ifscCode != '' ? employee.ifscCode : '0'}"></span>
+        </div>
+    </div>
+
+    <!-- Right Info Box -->
+    <div class="info-box" style="text-align: left;">
+        <div>
+            <span>Basic:</span> <span th:text="${employee.basic != '' ? employee.basic : '0'}"></span>
+        </div>
+        <div>
+            <span>FDA:</span> <span th:text="${employee.fda != '' ? employee.fda : '0'}"></span>
+        </div>
+        <div>
+            <span>Wages:</span> <span th:text="${employee.wages != '' ? employee.wages : '0'}"></span>
+        </div>
+        <div>
+            <span>PF:</span> <span th:text="${employee.pf != '' ? employee.pf : '0'}"></span>
+        </div>
+        <div>
+            <span>ESI:</span> <span th:text="${employee.esi != '' ? employee.esi : '0'}"></span>
+        </div>
+        <div>
+            <span>Safety Shoe:</span> <span th:text="${employee.safetyShoe != '' ? employee.safetyShoe : '0'}"></span>
+        </div>
+        <div>
+            <span>Bus Token:</span> <span th:text="${employee.busToken != '' ? employee.busToken : '0'}"></span>
+        </div>
+        <div>
+            <span>T-Sert:</span> <span th:text="${employee.tSert != '' ? employee.tSert : '0'}"></span>
+        </div>
+        <div>
+            <span>Advance:</span> <span th:text="${employee.advance != '' ? employee.advance : '0'}"></span>
+        </div>
+        <div>
+            <span>Total Paid Days:</span> <span th:text="${employee.totalPaidDays != '' ? employee.totalPaidDays : '0'}"></span>
+        </div>
+        <div>
+            <span>Wages per Day:</span> <span th:text="${employee.wagesPerDay != '' ? employee.wagesPerDay : '0'}"></span>
+        </div>
+        <div>
+            <span>Total Deduction:</span> <span th:text="${employee.totalDeduction != '' ? employee.totalDeduction : '0'}"></span>
+        </div>
+        <div class="net-salary">
+            <span>Net Salary (Net Pay):</span> <span th:text="${employee.netSalary != '' ? employee.netSalary : '0'}"></span>
+        </div>
+    </div>
+</div>
+
+<!-- Highlight Box for Total Deduction and Net Salary -->
+<div class="highlight-box">
+    <div>
+        <span>Employer Signature:</span>
+    </div>
+</div>
+<br>
+<!-- Buttons for printing and back navigation -->
+<div>
+    <button class="custom-button print-button" onclick="window.print()">Print Salary Slip</button>
+    <a href="/" class="custom-button">Back to Employee List</a>
+</div>
+
+</body>
+</html>
